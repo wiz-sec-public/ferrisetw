@@ -503,7 +503,7 @@ impl private::TryParse<String> for Parser<'_, '_> {
                         sddl::convert_sid_to_string(prop_slice.buffer.as_ptr() as *const _)?;
                     Ok(string)
                 }
-                TdhInType::InTypeCountedString => unimplemented!(),
+                TdhInType::InTypeCountedString => Err(ParserError::InvalidType),
                 TdhInType::InTypeCountedAnsiString => {
                     if prop_slice.buffer.len() < 2 {
                         return Err(ParserError::PropertyError(
